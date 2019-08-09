@@ -1,5 +1,7 @@
 # Country-pollution-app
 
+## An example deployment is running [here](https://country-pollution.mmycek83.now.sh).
+
 ### Available Scripts
 
 In the project directory, you can run:
