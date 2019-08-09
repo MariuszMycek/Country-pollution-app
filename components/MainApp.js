@@ -3,6 +3,7 @@ import moment from 'moment';
 import { fetchPollutionData, fetchCitiesDesctription } from 'utils/fetchData';
 import { createCitiesList, createCitiesDescriptions } from 'utils/cityLists';
 
+import Container from '@material-ui/core/Container';
 import Header from './Header';
 import Autocomplete from './Autocomplete';
 import Accordion from './Accordion';
@@ -66,7 +67,7 @@ class MainApp extends Component {
 
   render() {
     return (
-      <div>
+      <Container fixed>
         <Header yesterdayDate={this.state.yesterdayDate} />
         <Autocomplete
           placeholder="Choose a country"
@@ -81,7 +82,7 @@ class MainApp extends Component {
           />
         ) : null}
         <Accordion {...this.state} />
-      </div>
+      </Container>
     );
   }
 }
