@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import Select from 'react-select';
 import { emphasize, makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
-import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
-import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    height: 250,
+    marginBottom: '30px',
     minWidth: 290,
   },
   input: {
@@ -58,35 +55,13 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     left: 0,
     right: 0,
+    boxShadow: '0 0 12px #000',
+    transform: 'scale(1.01)',
   },
   divider: {
     height: theme.spacing(2),
   },
 }));
-
-function NoOptionsMessage(props) {
-  return (
-    <Typography
-      color="textSecondary"
-      className={props.selectProps.classes.noOptionsMessage}
-      {...props.innerProps}
-    >
-      {props.children}
-    </Typography>
-  );
-}
-
-NoOptionsMessage.propTypes = {
-  /**
-   * The children to be rendered.
-   */
-  children: PropTypes.node,
-  /**
-   * Props to be passed on to the wrapper.
-   */
-  innerProps: PropTypes.object.isRequired,
-  selectProps: PropTypes.object.isRequired,
-};
 
 function inputComponent({ inputRef, ...props }) {
   return <div ref={inputRef} {...props} />;
@@ -263,31 +238,6 @@ ValueContainer.propTypes = {
   selectProps: PropTypes.object.isRequired,
 };
 
-function MultiValue(props) {
-  return (
-    <Chip
-      tabIndex={-1}
-      label={props.children}
-      className={clsx(props.selectProps.classes.chip, {
-        [props.selectProps.classes.chipFocused]: props.isFocused,
-      })}
-      onDelete={props.removeProps.onClick}
-      deleteIcon={<CancelIcon {...props.removeProps} />}
-    />
-  );
-}
-
-MultiValue.propTypes = {
-  children: PropTypes.node,
-  isFocused: PropTypes.bool.isRequired,
-  removeProps: PropTypes.shape({
-    onClick: PropTypes.func.isRequired,
-    onMouseDown: PropTypes.func.isRequired,
-    onTouchEnd: PropTypes.func.isRequired,
-  }).isRequired,
-  selectProps: PropTypes.object.isRequired,
-};
-
 function Menu(props) {
   return (
     <Paper
@@ -315,7 +265,6 @@ Menu.propTypes = {
 const components = {
   Control,
   Menu,
-  NoOptionsMessage,
   Option,
   Placeholder,
   SingleValue,
@@ -329,11 +278,6 @@ const IntegrationReactSelect = props => {
   }));
   const classes = useStyles();
   const theme = useTheme();
-  const [single, setSingle] = React.useState(null);
-
-  function handleChangeSingle(value) {
-    setSingle(value);
-  }
 
   const selectStyles = {
     input: base => ({
@@ -344,7 +288,6 @@ const IntegrationReactSelect = props => {
       },
     }),
   };
-
   return (
     <div className={classes.root}>
       <NoSsr>
@@ -360,10 +303,11 @@ const IntegrationReactSelect = props => {
             },
           }}
           placeholder={props.placeholder}
-          options={props.suggestions}
+          options={suggestions}
           components={components}
-          value={single}
-          onChange={handleChangeSingle}
+          value={props.inputValue}
+          defaultInputValue={props.defaultInputValue}
+          onChange={props.onChange}
         />
         <div className={classes.divider} />
       </NoSsr>
