@@ -6,13 +6,7 @@ import { createCitiesList, createCitiesDescriptions } from 'utils/cityLists';
 import Header from './Header';
 import Autocomplete from './Autocomplete';
 import Accordion from './Accordion';
-
-const suggestions = [
-  { label: 'Poland' },
-  { label: 'Germany' },
-  { label: 'Spain' },
-  { label: 'France' },
-];
+import Select from './Select';
 
 class MainApp extends Component {
   constructor(props) {
@@ -20,7 +14,7 @@ class MainApp extends Component {
 
     this.state = {
       defaultInputValue: '',
-      inputValue: '',
+      country: '',
       citiesPollutionList: [],
       citiesDescriptions: [],
       yesterdayDate: '',
@@ -37,14 +31,20 @@ class MainApp extends Component {
     });
   }
 
-  onChangeHandler = country => {
+  onCountryChangeHandler = country => {
     const { parameter, yesterdayDate } = this.state;
     this.fetchData(country.value, parameter, yesterdayDate);
-    this.setState({ inputValue: country.value });
+    this.setState({ country: country.value });
     sessionStorage.setItem('myCountry', country.value);
   };
+
   parameterChange = parameter => {
     this.setState({ parameter });
+  };
+
+  onParameterChangeHandler = parameter => {
+    const { country, yesterdayDate } = this.state;
+    this.fetchData(country, parameter, yesterdayDate);
   };
 
   fetchData(countryName, parameter, yesterdayDate) {
@@ -65,26 +65,22 @@ class MainApp extends Component {
   }
 
   render() {
-    const {
-      citiesPollutionList,
-      defaultInputValue,
-      yesterdayDate,
-      citiesDescriptions,
-      parameter,
-    } = this.state;
     return (
       <div>
-        <Header yesterdayDate={yesterdayDate} />
+        <Header yesterdayDate={this.state.yesterdayDate} />
         <Autocomplete
-          suggestions={suggestions}
           placeholder="Choose a country"
-          defaultInputValue={defaultInputValue}
-          onChange={this.onChangeHandler}
+          defaultInputValue={this.state.defaultInputValue}
+          onChange={this.onCountryChangeHandler}
         />
-        <Accordion
-          citiesPollutionList={citiesPollutionList}
-          citiesDescriptions={citiesDescriptions}
-        />
+        {this.state.country ? (
+          <Select
+            {...this.state}
+            parameterChange={this.parameterChange}
+            onParameterChangeHandler={this.onParameterChangeHandler}
+          />
+        ) : null}
+        <Accordion {...this.state} />
       </div>
     );
   }

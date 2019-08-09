@@ -7,11 +7,11 @@ import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
+import { SUGGESTIONS } from 'utils/constants';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: '30px',
     minWidth: 290,
   },
   input: {
@@ -55,11 +55,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     left: 0,
     right: 0,
-    boxShadow: '0 0 12px #000',
+    boxShadow: '0 0 8px #000',
     transform: 'scale(1.01)',
-  },
-  divider: {
-    height: theme.spacing(2),
   },
 }));
 
@@ -272,7 +269,7 @@ const components = {
 };
 
 const IntegrationReactSelect = props => {
-  const suggestions = props.suggestions.map(suggestion => ({
+  const suggestions = SUGGESTIONS.map(suggestion => ({
     value: suggestion.label,
     label: suggestion.label,
   }));
@@ -305,18 +302,15 @@ const IntegrationReactSelect = props => {
           placeholder={props.placeholder}
           options={suggestions}
           components={components}
-          value={props.inputValue}
           defaultInputValue={props.defaultInputValue}
           onChange={props.onChange}
         />
-        <div className={classes.divider} />
       </NoSsr>
     </div>
   );
 };
 
 IntegrationReactSelect.propTypes = {
-  suggestions: PropTypes.array,
   placeholder: PropTypes.string,
 };
 

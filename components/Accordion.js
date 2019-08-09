@@ -6,6 +6,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { parameterIdToName } from 'utils/parameterIdToName';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,7 +53,7 @@ export default function ControlledExpansionPanels(props) {
               {i + 1}. {item.city}
             </Typography>
             <Typography className={classes.secondaryHeading}>
-              Average PM2,5:
+              Average {parameterIdToName(item.parameter)}:
               <span className={classes.pollutionCount}>
                 {item.averagePollution} {item.unit}
               </span>
