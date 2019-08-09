@@ -38,6 +38,9 @@ export default function ControlledExpansionPanels(props) {
 
   return (
     <div className={classes.root}>
+      {props.citiesPollutionList.length ? (
+        <h4 className="header">Ten most polluted places:</h4>
+      ) : null}
       {props.citiesPollutionList.map((item, i) => (
         <ExpansionPanel
           key={item.city}
