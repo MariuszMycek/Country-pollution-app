@@ -4,7 +4,7 @@ import { fetchPollutionData, fetchCitiesDesctription } from 'utils/fetchData';
 import { createCitiesList, createCitiesDescriptions } from 'utils/cityLists';
 
 import Container from '@material-ui/core/Container';
-import Header from './Header';
+import AppHeader from './AppHeader';
 import Autocomplete from './materialUI/Autocomplete';
 import Accordion from './materialUI/Accordion';
 import Select from './materialUI/Select';
@@ -86,7 +86,7 @@ class MainApp extends Component {
   render() {
     return (
       <Container fixed>
-        <Header yesterdayDate={this.state.yesterdayDate} />
+        <AppHeader yesterdayDate={this.state.yesterdayDate} />
         {/* Input with autocomplete - cities names */}
         <Autocomplete
           placeholder="Choose a country"
