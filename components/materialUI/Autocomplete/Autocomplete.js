@@ -116,6 +116,8 @@ const IntegrationReactSelect = props => {
 
 IntegrationReactSelect.propTypes = {
   placeholder: PropTypes.string,
+  defaultInputValue: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default IntegrationReactSelect;

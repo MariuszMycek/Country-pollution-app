@@ -14,7 +14,7 @@ export function fetchPollutionData(countryName, parameter, yesterdayDate) {
   ).then(res => res.json());
 }
 
-// Function fetches places descriptions from Wikipedia API based on place name 
+// Function fetches places descriptions from Wikipedia API based on place name
 export function fetchCitiesDesctription(citiesToFetch) {
   return Promise.all(
     citiesToFetch.map(city => {

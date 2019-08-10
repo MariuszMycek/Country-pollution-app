@@ -93,4 +93,5 @@ export default function ControlledExpansionPanels(props) {
 
 ControlledExpansionPanels.propTypes = {
   citiesPollutionList: PropTypes.array,
+  citiesDescriptions: PropTypes.array,
 };
