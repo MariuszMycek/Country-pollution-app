@@ -4,7 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { PARAMETERS } from 'utils/constants';
+import { PARAMETERS } from 'utils/componentsData';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,13 +28,13 @@ export default function SimpleSelect(props) {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="select-simple">Parameter</InputLabel>
         <Select
-          value={props.parameter}
+          value={props.activeParameter}
           onChange={event => {
-            props.onParameterChangeHandler(event.target.value);
-            props.parameterChange(event.target.value);
+            props.parameterChangeHandler(event.target.value);
+            props.changeParameter(event.target.value);
           }}
           inputProps={{
-            name: props.parameter,
+            name: props.activeParameter,
             id: 'select-simple',
           }}
         >

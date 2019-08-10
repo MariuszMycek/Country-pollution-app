@@ -1,3 +1,4 @@
+// List of countries available for choosing within Autocomplete component
 export const SUGGESTIONS = [
   { label: 'Poland' },
   { label: 'Germany' },
@@ -5,6 +6,7 @@ export const SUGGESTIONS = [
   { label: 'France' },
 ];
 
+// List of parameters available for choosing within Select component
 export const PARAMETERS = [
   {
     id: 'co',
