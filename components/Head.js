@@ -2,8 +2,6 @@ import React from 'react';
 import NextHead from 'next/head';
 import { string } from 'prop-types';
 
-import 'styles/style.scss';
-
 const defaultDescription = 'Example country pollution app';
 
 const Head = props => (

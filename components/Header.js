@@ -18,7 +18,7 @@ const Header = props => {
       <h1>Welcome!</h1>
       <h3>
         This application can show you the pollution of several european
-        countries based on PM2,5 parameter from yesterday measurements
+        countries based on measurements from yesterday
         <span className={classes.dataField}>({props.yesterdayDate})</span>
       </h3>
     </header>

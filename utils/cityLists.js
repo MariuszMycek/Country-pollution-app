@@ -1,4 +1,5 @@
-// Function processes the measurements data and creates sorted list of cities
+// Function processes the measurements data
+// and creates sorted list of ten most polluted places
 export function createCitiesList(measurements = []) {
   const countryMeasurements = [...measurements];
 
@@ -45,7 +46,7 @@ function createCityMeasurementsLists(citiesList, countryMeasurements) {
   return citiesMeasurementsList;
 }
 
-// Function creates array with avarage pollution for each city
+// Function creates an array with avarage pollution for each city
 function calculateAveragePollution(citiesMeasurementsList) {
   let citiesAveragePollution = [];
 
