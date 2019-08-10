@@ -62,6 +62,7 @@ export default function ControlledExpansionPanels(props) {
           key={item.city}
           expanded={expanded === `panel${i}`}
           onChange={handleChange(`panel${i}`)}
+          square
         >
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
