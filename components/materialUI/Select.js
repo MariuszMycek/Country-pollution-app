@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -52,3 +53,9 @@ export default function SimpleSelect(props) {
     </form>
   );
 }
+
+SimpleSelect.propTypes = {
+  activeParameter: PropTypes.string,
+  parameterChangeHandler: PropTypes.func,
+  changeParameter: PropTypes.func,
+};
