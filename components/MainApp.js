@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import NoSsr from '@material-ui/core/NoSsr';
 import { fetchPollutionData, fetchCitiesDesctription } from 'utils/fetchData';
 import { createCitiesList, createCitiesDescriptions } from 'utils/cityLists';
 
@@ -36,13 +37,14 @@ class MainApp extends Component {
 
   countryChangeHandler = country => {
     const { activeParameter, yesterdayDate } = this.state;
+
     // fething data based on selected country,
     // active pollution parameter and date - on country change
-    this.fetchData(country.value, activeParameter, yesterdayDate);
+    this.fetchData(country, activeParameter, yesterdayDate);
     // setting selected country name as active
-    this.setState({ activeCountry: country.value });
+    this.setState({ activeCountry: country });
     // saving active country name to session storage
-    sessionStorage.setItem('myCountry', country.value);
+    sessionStorage.setItem('myCountry', country);
   };
 
   changeParameter = parameter => {
@@ -88,11 +90,14 @@ class MainApp extends Component {
       <Container fixed>
         <AppHeader yesterdayDate={this.state.yesterdayDate} />
         {/* Input with autocomplete - cities names */}
-        <Autocomplete
-          placeholder="Choose a country"
-          defaultInputValue={this.state.defaultInputValue}
-          onChange={this.countryChangeHandler}
-        />
+        <NoSsr>
+          <Autocomplete
+            placeholder="Choose a country"
+            inputLabel="Country"
+            defaultInputValue={this.state.defaultInputValue}
+            onChange={this.countryChangeHandler}
+          />
+        </NoSsr>
         {/* Selectable list with parameters - hidden until first country choosing by user */}
         {this.state.activeCountry ? (
           <Select
